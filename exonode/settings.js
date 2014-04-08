@@ -1,8 +1,12 @@
-global.path = "../systems/";
+path1 = "../systems/";
+path2 = "../systems_kepler/";
+
+global.systemMap = {};
+
 global.read = function(file){
   fs = require('fs');
-	console.log(global.path+file);
-	content = fs.readFileSync(global.path+file,{encoding:'utf8'});
+	console.log(file);
+	content = fs.readFileSync(file,{encoding:'utf8'});
 	return content;
 };
 global.parse = function(xml){
@@ -11,6 +15,7 @@ global.parse = function(xml){
 		console.log(res);
     if(res!=null){
 			systems.push(res);
+			global.systemMap[res.system.name] = res;
 			}
 	});
 };
@@ -24,10 +29,16 @@ global.parsecall = function(xml,callback){
 global.systems = []
 
 fs = require('fs');
-fs.readdir(global.path, function(e,i){
+
+function read(path){
+fs.readdir(path, function(e,i){
   i.forEach(function(file){
 	  console.log("open "+file);
-		xml = global.read(file);
+		xml = global.read(path+file);
 		global.parse(xml);
 	});
 });
+}
+
+read(path1);
+//read(path2);
