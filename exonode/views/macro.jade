@@ -1,0 +1,22 @@
+mixin mass(m)
+  p=m
+
+mixin link(a)
+  a(href="system/#{a.system.name}.json")
+    p #{a.system.name}
+  ul
+    if a.system.videolink
+      a(href="#{a.system.videolink}") video
+    if a.system.star
+      p Sun
+        ul.moreinfo
+          each s in a.system.star
+            li= s.name+" "+JSON.stringify(s.mass)
+              if s.planet
+               p Planets
+               ul.planets
+                 each p in s.planet
+                   if p.mass
+                     li=p.name+" "+JSON.stringify(p.mass)
+
+      

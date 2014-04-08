@@ -1,0 +1,27 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #000;
+  color: #999;
+}
+a {
+  color: #00b7ff;
+}
+#systeme {
+  float: left;
+}
+#systeme ul {
+  list-style: none;
+}
+#systeme ul .moreinfo {
+  list-style: disc;
+}
+#systeme ul .planets {
+  list-style: disc;
+}
+#systeme ul a.videolink {
+  color: #ff0;
+}
+#systeme li {
+  background: #000;
+}
