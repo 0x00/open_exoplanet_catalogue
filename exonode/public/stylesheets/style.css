@@ -25,3 +25,6 @@ a {
 #systeme li {
   background: #000;
 }
+canvas#starscreen {
+  background: #fff;
+}

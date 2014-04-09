@@ -6,6 +6,8 @@
 var express = require('express');
 var routes = require('./routes');
 var systemjson = require('./routes/systemjson');
+var draw = require('./routes/draw');
+
 var http = require('http');
 var path = require('path');
 
@@ -31,6 +33,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/systemlist', routes.list);
+app.get('/draw', draw.draw);
 app.get('/system/:systemname.json', systemjson.show);
 
 
