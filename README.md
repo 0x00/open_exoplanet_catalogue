@@ -32,6 +32,14 @@ for system in oec.findall(".//system"):
     print system.findtext("distance"), len(system.findall(".//planet"))
 ```
 
+If you are using python 3, replace the first three lines by 
+
+```python
+import xml.etree.ElementTree as ET, urllib.request, gzip, io
+url = "https://github.com/OpenExoplanetCatalogue/oec_gzip/raw/master/systems.xml.gz"
+oec = ET.parse(gzip.GzipFile(fileobj=io.BytesIO(urllib.request.urlopen(url).read())))
+```
+
 Data Structure
 -------------
 The following table shows all the possible tags in the Open Exoplanet Catalogue. 
@@ -48,6 +56,7 @@ The following table shows all the possible tags in the Open Exoplanet Catalogue.
 | `distance`		| `system` | Distance from the Sun | parsec   |
 | `name`		| `system`, `binary`, `star`, `planet` | Name of this object. This tag can be used multiple times if the object has multiple Names. |   |
 | `semimajoraxis` 	| `binary`, `planet` | Semi-major axis of a planet (heliocentric coordinates) if child of `planet`. Semi-major axis of the binary if child of `binary`. |  AU |
+| `separation`	 	| `binary`, `planet` | Projected separation of planet from its host, or if child of `binary` the projected separation from one component to the other. This tag can occur multiple times with different units. It is different from the tag `semimajoraxis` as it does not imply a specific orbital configuration. |  AU, arcsec |
 | `eccentricity` 	| `binary`, `planet` | Eccentricity  | |
 | `periastron` 	| `binary`, `planet` | Longitude of periastron | degree  |
 | `longitude` 	| `binary`, `planet` | Mean longitude at a given Epoch (same for all planets in one system) | degree  |
