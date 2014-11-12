@@ -1,6 +1,10 @@
 Open Exoplanet Catalogue
 ==============
 
+[![Travis](http://img.shields.io/travis/OpenExoplanetCatalogue/open_exoplanet_catalogue/master.svg?style=flat)](https://travis-ci.org/OpenExoplanetCatalogue/open_exoplanet_catalogue/)
+[![MIT](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![arXiv](http://img.shields.io/badge/arXiv-1211.7121-orange.svg?style=flat)](http://arxiv.org/abs/1211.7121)
+
 The Open Exoplanet Catalogue is a database of all discovered extra-solar planets. New planets are usually added within 24 hours of their announcement.
 
 The database is licensed under an MIT license (see below), which basically says you can do everything with it. If you use it for a scientific publication, please include a reference to the Open Exoplanet Catalogue on [github](https://github.com/hannorein/open_exoplanet_catalogue) or to [this arXiv paper](http://arxiv.org/abs/1211.7121).  
@@ -32,6 +36,14 @@ for system in oec.findall(".//system"):
     print system.findtext("distance"), len(system.findall(".//planet"))
 ```
 
+If you are using python 3, replace the first three lines by 
+
+```python
+import xml.etree.ElementTree as ET, urllib.request, gzip, io
+url = "https://github.com/OpenExoplanetCatalogue/oec_gzip/raw/master/systems.xml.gz"
+oec = ET.parse(gzip.GzipFile(fileobj=io.BytesIO(urllib.request.urlopen(url).read())))
+```
+
 Data Structure
 -------------
 The following table shows all the possible tags in the Open Exoplanet Catalogue. 
@@ -48,6 +60,7 @@ The following table shows all the possible tags in the Open Exoplanet Catalogue.
 | `distance`		| `system` | Distance from the Sun | parsec   |
 | `name`		| `system`, `binary`, `star`, `planet` | Name of this object. This tag can be used multiple times if the object has multiple Names. |   |
 | `semimajoraxis` 	| `binary`, `planet` | Semi-major axis of a planet (heliocentric coordinates) if child of `planet`. Semi-major axis of the binary if child of `binary`. |  AU |
+| `separation`	 	| `binary`, `planet` | Projected separation of planet from its host, or if child of `binary` the projected separation from one component to the other. This tag can occur multiple times with different units. It is different from the tag `semimajoraxis` as it does not imply a specific orbital configuration. |  AU, arcsec |
 | `eccentricity` 	| `binary`, `planet` | Eccentricity  | |
 | `periastron` 	| `binary`, `planet` | Longitude of periastron | degree  |
 | `longitude` 	| `binary`, `planet` | Mean longitude at a given Epoch (same for all planets in one system) | degree  |
@@ -61,14 +74,14 @@ The following table shows all the possible tags in the Open Exoplanet Catalogue.
 | `temperature`	| `planet`, `star` |Temperature (surface or equilibrium) | Kelvin  |
 | `age`		| `planet`, `star` |Age | Gyr  |
 | `metallicity`	| `star` | Stellar metallicity  | log, relative to solar  |
-| `spectraltype`	| `star` | Spectral type  |   |
-| `magB`		| `binary`, `star` | B magnitude |   |
-| `magV`		| `binary`, `star` | Visual magnitude |   |
-| `magR`		| `binary`, `star` | R magnitude |   |
-| `magI`		| `binary`, `star` | I magnitude |   |
-| `magJ`		| `binary`, `star` | J magnitude |   |
-| `magH`		| `binary`, `star` | H magnitude |   |
-| `magK`		| `binary`, `star` | K magnitude |   |
+| `spectraltype`	| `star`, `planet` | Spectral type  |   |
+| `magB`		| `binary`, `star`, `planet` | B magnitude |   |
+| `magV`		| `binary`, `star`, `planet` | Visual magnitude |   |
+| `magR`		| `binary`, `star`, `planet` | R magnitude |   |
+| `magI`		| `binary`, `star`, `planet` | I magnitude |   |
+| `magJ`		| `binary`, `star`, `planet` | J magnitude |   |
+| `magH`		| `binary`, `star`, `planet` | H magnitude |   |
+| `magK`		| `binary`, `star`, `planet` | K magnitude |   |
 | | | | |
 | `discoverymethod` 	| `planet` | Discovery method of the planet. For example: timing, RV, transit, imaging.  |   |
 | `istransiting` 	| `planet` | Whether the planet is transiting (1) or not (0).  |   |
