@@ -2,6 +2,9 @@ extends layout
 
 block content
   h1 Exobrowser
+  #vision
+    canvas#starscreen(bounds="#{bounds}")
+    script(src='/javascripts/painter.js')
   #systeme 
     ul
       each s in systems

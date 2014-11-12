@@ -11,11 +11,43 @@ var read = function(file){
 	return content;
 };
 
+
+global.bounds = { minX: 0, maxX: 0, minY: 0, maxY: 0};
+
+
 var parse = function(xml){
   x = require('xml2js').parseString
 	x(xml, function(e,res){
 		console.log(res);
     if(res!=null){
+  
+	    if(res.system.rightascension==null || res.system.declination==null)
+				return;
+
+      for(var i=0; i<res.system.rightascension.length; i++){
+				res.system.rightascension[i] = parseFloat(res.system.rightascension[i].replace(/ /g,""))/1000.;
+
+				if(bounds.minX>res.system.rightascension[i]){
+				  bounds.minX = res.system.rightascension[i];
+				}
+				if(bounds.maxX<res.system.rightascension[i]){
+				  bounds.maxX = res.system.rightascension[i];
+				}
+
+			}
+			
+			for(var i=0; i<res.system.declination.length; i++){
+				res.system.declination[i] = parseFloat(res.system.declination[i].replace(/ /g,""))/1000.;
+				if(bounds.minY>res.system.declination[i]){
+				  bounds.minY = res.system.declination[i];
+				}
+				if(bounds.maxY<res.system.declination[i]){
+				  bounds.maxY = res.system.declination[i];
+				}
+
+			}
+
+
 			systems.push(res);
 			global.systemMap[res.system.name] = res;
 			}
@@ -35,7 +67,7 @@ fs.readdir(path, function(e,i){
 }
 
 buildDB(path1);
-//buildDB(path2);
+buildDB(path2);
 
 
 function num(a){
@@ -46,42 +78,14 @@ function num(a){
 }
 
 var byDistance = function(a,b){ 
-	return num(b.system.distance)-num(a.system.distance)
+	return num(a.system.distance)-num(b.system.distance)
 };
-var byDeclination = function(a,b){
-  if(a.system.declination!=null){
-		d1 = a.system.declination[0].replace(/ /g,"");
-	}else d1=0;
-
-	if(b.system.declination!=null){
-		d2 = b.system.declination[0].replace(/ /g,"");
-	}else d2=0;
-
-	return d2-d1;
-};
-var byRightascension = function(a,b){
-  if(a.system.rightascension!=null){
-		d1 = a.system.rightascension[0].replace(/ /g,"");
-	}else d1=0;
-
-	if(b.system.rightascension!=null){
-		d2 = b.system.rightascension[0].replace(/ /g,"");
-	}else d2=0;
-
-	return d2-d1;
-};
-
 
 
 global.byDistance = function(){
-	global.systems.sort(byDistance);
+	return global.systems.sort(byDistance);
 };
-global.byDeclination = function(){
-  global.systems.sort(byDeclination);
-};
-global.byRightascension = function(){
-	global.systems.sort(byRightascension);
-};
+
 
 repl = require("repl")
 r = repl.start("node> ")

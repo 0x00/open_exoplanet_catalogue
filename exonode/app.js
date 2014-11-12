@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes');
 var systemjson = require('./routes/systemjson');
-var draw = require('./routes/draw');
 
 
 var app = express();
@@ -27,7 +26,6 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/systemlist', routes.list);
-app.use('/draw', draw.draw);
 app.use('/system/:systemname.json', systemjson.show);
 app.use('/', routes.index);
 
