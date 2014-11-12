@@ -2,7 +2,7 @@ mixin mass(m)
   p=m
 
 mixin link(a)
-  a(href="system/#{a.system.name}.json")
+  a(href="/system/#{a.system.name}.json")
     p #{a.system.name}
   ul
     if a.system.videolink
