@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 
 var routes = require('./routes');
-var systemjson = require('./routes/systemjson');
+var detail = require('./routes/detail');
 
 
 var app = express();
@@ -25,8 +25,10 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/systemlist', routes.list);
-app.use('/system/:systemname.json', systemjson.show);
+app.use('/systemlist', routes.listjson);
+app.use('/systempage', routes.listpage);
+app.use('/system/:systemname.json', detail.showjson);
+app.use('/system/:systemname.htm', detail.showpage);
 app.use('/', routes.index);
 
 

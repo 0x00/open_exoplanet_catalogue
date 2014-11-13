@@ -49,7 +49,7 @@ var parse = function(xml){
 
 
 			systems.push(res);
-			global.systemMap[res.system.name] = res;
+			global.systemMap[encodeURI(res.system.name[0])] = res;
 			}
 	});
 };

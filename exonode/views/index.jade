@@ -1,12 +1,15 @@
 extends layout
 
 block content
-  h1 Exobrowser
   #vision
     canvas#starscreen(bounds="#{bounds}")
+    #info
+      h1 Exobrowser
+      p(id='moreinfo')
+      p Click on any star for more info.
+      p To zoom in, double click on the map.
+      p 
+        a(href='/systempage') Go here
+        &nbsp;to see the full star catalog.
+
     script(src='/javascripts/painter.js')
-  #systeme 
-    ul
-      each s in systems
-        li
-          +link(s) 
