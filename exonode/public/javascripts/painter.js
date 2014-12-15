@@ -27,14 +27,23 @@ function paint(system, cx){
 	py= y(cur)*canvas.height;
 
 	//console.log(cur.system.name[0]+" "+px+" "+py);
-	cx.fillRect(px, py,1+mass(system),1+mass(system));
-	
+  cx.beginPath();
+	cx.arc(px,py,1+2*mass(system),0,2*Math.PI);
+	cx.fill();
+
 	//cx.fillText(cur.system.name[0],x(cur)*canvas.width+10, y(cur)*canvas.height+4);
 }
 
 function paintSystems(systems,cx){
-	cx.fillStyle = "#002";
-  cx.fillRect(0,0,window.innerWidth, window.innerHeight);
+
+	var grd=cx.createLinearGradient(0,0,0,canvas.height);
+	grd.addColorStop(0,"#002");
+	grd.addColorStop(1,"#005");
+
+	cx.fillStyle = grd;
+  cx.fillRect(0,0,canvas.width, canvas.height);
+
+
 	cx.fillStyle = "#fff";
 	cx.strokeStyle = "#fff";
 
@@ -42,6 +51,8 @@ function paintSystems(systems,cx){
 		cur = systems[i];
 		paint(cur, cx);
 	}
+
+
 }
 
 function draw(){
@@ -113,7 +124,16 @@ $(canvas).on('click', function(e){
 
 });
 
+
+$("#starscreen").bind('oanimationend animationend webkitAnimationEnd transitionend', function() { 
+     $(".zoom1").removeClass("zoom2");
+});
+
+
 $(canvas).on('dblclick', function(e){
+
+  $(".zoom1").addClass("zoom2");
+
   var clx = e.pageX - this.offsetLeft;
   var cly = e.pageY - this.offsetTop;
 

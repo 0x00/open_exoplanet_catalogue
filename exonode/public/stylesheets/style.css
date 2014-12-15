@@ -4,6 +4,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #000;
   color: #999;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 a {
   color: #00b7ff;
@@ -31,14 +36,41 @@ a {
 #systeme li {
   background: #000;
 }
+.zoom1 {
+  -webkit-transform: scale(1, 1);
+  -webkit-transition-duration: 500ms;
+  -webkit-transition-timing-function: ease-out;
+/* Webkit for Mozila Firefox */
+  -moz-transform: scale(1, 1);
+  -moz-transition-duration: 500ms;
+  -moz-transition-timing-function: ease-out;
+/* Webkit for IE( Version: 11, 10 ) */
+  -ms-transform: scale(1, 1);
+  -ms-transition-duration: 500ms;
+  -ms-transition-timing-function: ease-out;
+}
+.zoom2 {
+/* Webkit for Chrome and Safari */
+  -webkit-transform: scale(2.2, 2.2);
+  -webkit-transition-duration: 500ms;
+  -webkit-transition-timing-function: ease-out;
+/* Webkit for Mozila Firefox */
+  -moz-transform: scale(2.2, 2.2);
+  -moz-transition-duration: 500ms;
+  -moz-transition-timing-function: ease-out;
+/* Webkit for IE( Version: 11, 10 ) */
+  -ms-transform: scale(2.2, 2.2);
+  -ms-transition-duration: 500ms;
+  -ms-transition-timing-function: ease-out;
+}
 canvas#starscreen {
   background: #003;
   margin: 0px;
   padding: 0px;
 }
 #info {
-  background: #223;
-  color: #ccc;
+  background: #001;
+  color: #fb3;
   z-index: 100;
   width: 300px;
   padding: 10px;
@@ -49,4 +81,7 @@ canvas#starscreen {
 }
 #info li {
   margin-left: -2em;
+}
+#info a {
+  color: #fe0;
 }
