@@ -8,6 +8,8 @@ bin/www
 
 and visit the url http://localhost:3000 in your browser.
 
+Maybe you want to check out the [live demo](http://exoplanet.0x00.ws/) also.
+
 
 [![Travis](http://img.shields.io/travis/OpenExoplanetCatalogue/open_exoplanet_catalogue/master.svg?style=flat)](https://travis-ci.org/OpenExoplanetCatalogue/open_exoplanet_catalogue/)
 [![MIT](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](http://opensource.org/licenses/MIT)
