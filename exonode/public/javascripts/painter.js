@@ -69,8 +69,13 @@ cx = canvas.getContext('2d');
 
 
 if(systems.length==0){
+	cx.font = "60px Arial";
+  cx.fillStyle = "#000";
+	cx.fillText("Wait while loading..", 100+3,100+3);
   cx.fillStyle = "#9f9";
 	cx.fillText("Wait while loading..", 100,100);
+
+
 	$.get("/systemlist", function(data){
 		systems = data;
 		paintSystems(systems,cx);
@@ -116,9 +121,15 @@ $(canvas).on('click', function(e){
   sy = y(sys)*canvas.height;
   cx.rect(sx-3,sy-3, +6, +6);
   cx.stroke();
-	cx.fillText(sys.system.name[0], sx+10, sy+4);
 
-	$.get("/system/"+sys.system.name[0]+".htm", function(data){
+	cx.font = "14px Arial";
+	cx.fillStyle = "#333";
+	cx.fillText(sys.system.name[0], sx+10, sy+4);
+	cx.fillStyle = "#fff";
+	cx.fillText(sys.system.name[0], sx+10-2, sy+4-2);
+
+
+	$.get("/system/"+sys.system.name[0]+".htm?ajax=yo", function(data){
     $("#info #moreinfo").html(data);
 	});
 
@@ -126,6 +137,7 @@ $(canvas).on('click', function(e){
 
 
 $("#starscreen").bind('oanimationend animationend webkitAnimationEnd transitionend', function() { 
+		 draw();
      $(".zoom1").removeClass("zoom2");
 });
 
@@ -162,6 +174,6 @@ $(canvas).on('dblclick', function(e){
 	cx.rect(left.x, left.y, size*2, size*2);
 	cx.stroke();
 
-  draw();
+  //draw();
 
 });

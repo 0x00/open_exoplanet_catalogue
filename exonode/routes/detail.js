@@ -7,5 +7,10 @@ exports.showjson = function(req, res){
 exports.showpage = function(req, res){
   name = req.param('systemname');
   console.log("Requested: "+name);
-	res.render('system', { system: global.systemMap[encodeURI(name)]});
+	
+	ajax = req.param('ajax')
+	if(ajax)
+	  res.render('system_ajax', { system: global.systemMap[encodeURI(name)]});
+	else
+		res.render('system', { system: global.systemMap[encodeURI(name)]});
 };

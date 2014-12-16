@@ -1,23 +1,6 @@
-ul
-  li Name: #{system.system.name}
-  li Right ascension: #{system.system.rightascension}
-  li Declination: #{system.system.declination}
-  li Distance from sol: #{system.system.distance} ly 
-
-  if system.system.star
-    li Sun
-      ul
-        for s in system.system.star
-          li Mass: #{s.mass}
-          li Radius: #{s.radius}
-          li Temperature: #{s.temperature}
-          li Planet
-            ul  
-              for p,i in s.planet
-                li= (i+1)
-                   ul
-                    li #{p.name}        				
-                    li Mass: #{p.mass}
-                    li Period: #{p.period}
-                    li Discovery year: #{p.discoveryyear}
-                    li Temperature: #{p.temperature}
+extends layout
+block content
+  #detailpage
+    h1 System detail
+    +detail(system)
+    a(href="/systempage") back

@@ -1,10 +1,25 @@
 mixin mass(m)
   p=m
 
+mixin value(label, v)
+  //p CHECK: #{label}: #{JSON.stringify(v)}
+  if v && v.length && v.length>0
+    if v[0]["_"]
+      span #{label} #{v[0]["_"]}
+    else 
+      span #{label} #{v[0]}
+  else if v && !v.length
+    span #{label} #{v}
+  else
+    span #{label} unknown!
+
+
+
 mixin link(a)
-  a(href="/system/#{a.system.name}.json")
+  a(href="/system/#{a.system.name[0]}.htm")
     p #{a.system.name}
-  ul
+  //
+    ul
     if a.system.videolink
       a(href="#{a.system.videolink}") video
     if a.system.star
@@ -19,4 +34,37 @@ mixin link(a)
                    if p.mass
                      li=p.name+" "+JSON.stringify(p.mass)
 
-      
+
+mixin detail(system)
+  ul
+    li Name: #{system.system.name}
+    li Right ascension: #{system.system.rightascension}
+    li Declination: #{system.system.declination}
+    li
+      +value("Distance from sol: ", system.system.distance)
+      span &nbsp; ly
+
+    if system.system.star
+      li Sun
+        ul
+          for s in system.system.star
+            li
+              +value("Mass: ", s.mass)
+            li
+              +value("Radius: ", s.radius)
+            li
+              +value("Temperature:", s.temperature)
+            li Planet
+              ul  
+                for p,i in s.planet
+                  li= (i+1)
+                     ul
+                      li #{p.name}        				
+                      li
+                        +value("Mass: ", p.mass)
+                      li
+                        +value("Period: ", p.period)
+                      li
+                       +value("Discovery year: ", p.discoveryyear)
+                     li
+                       +value("Temperature: ", p.temperature)
