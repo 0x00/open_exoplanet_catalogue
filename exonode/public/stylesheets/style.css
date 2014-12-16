@@ -38,28 +38,28 @@ a {
 }
 .zoom1 {
   -webkit-transform: scale(1, 1);
-  -webkit-transition-duration: 500ms;
+  -webkit-transition-duration: 100ms;
   -webkit-transition-timing-function: ease-out;
 /* Webkit for Mozila Firefox */
   -moz-transform: scale(1, 1);
-  -moz-transition-duration: 500ms;
+  -moz-transition-duration: 100ms;
   -moz-transition-timing-function: ease-out;
 /* Webkit for IE( Version: 11, 10 ) */
   -ms-transform: scale(1, 1);
-  -ms-transition-duration: 500ms;
+  -ms-transition-duration: 100ms;
   -ms-transition-timing-function: ease-out;
 }
 .zoom2 {
 /* Webkit for Chrome and Safari */
-  -webkit-transform: scale(2.2, 2.2);
+  -webkit-transform: scale(3.2, 3.2);
   -webkit-transition-duration: 500ms;
   -webkit-transition-timing-function: ease-out;
 /* Webkit for Mozila Firefox */
-  -moz-transform: scale(2.2, 2.2);
+  -moz-transform: scale(3.2, 3.2);
   -moz-transition-duration: 500ms;
   -moz-transition-timing-function: ease-out;
 /* Webkit for IE( Version: 11, 10 ) */
-  -ms-transform: scale(2.2, 2.2);
+  -ms-transform: scale(3.2, 3.2);
   -ms-transition-duration: 500ms;
   -ms-transition-timing-function: ease-out;
 }
