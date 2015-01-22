@@ -1,0 +1,97 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #000;
+  color: #999;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+a {
+  color: #00b7ff;
+}
+#vision {
+  position: absolute;
+  overflow: hidden;
+  height: 100%;
+}
+#systeme {
+  float: left;
+}
+#systeme ul {
+  list-style: none;
+}
+#systeme ul .moreinfo {
+  list-style: disc;
+}
+#systeme ul .planets {
+  list-style: disc;
+}
+#systeme ul a.videolink {
+  color: #ff0;
+}
+#systeme li {
+  background: #000;
+}
+.zoom1 {
+  -webkit-transform: scale(1, 1);
+  -webkit-transition-duration: 100ms;
+  -webkit-transition-timing-function: ease-out;
+/* Webkit for Mozila Firefox */
+  -moz-transform: scale(1, 1);
+  -moz-transition-duration: 100ms;
+  -moz-transition-timing-function: ease-out;
+/* Webkit for IE( Version: 11, 10 ) */
+  -ms-transform: scale(1, 1);
+  -ms-transition-duration: 100ms;
+  -ms-transition-timing-function: ease-out;
+}
+.zoom2 {
+/* Webkit for Chrome and Safari */
+  -webkit-transform: scale(3.2, 3.2);
+  -webkit-transition-duration: 500ms;
+  -webkit-transition-timing-function: ease-out;
+/* Webkit for Mozila Firefox */
+  -moz-transform: scale(3.2, 3.2);
+  -moz-transition-duration: 500ms;
+  -moz-transition-timing-function: ease-out;
+/* Webkit for IE( Version: 11, 10 ) */
+  -ms-transform: scale(3.2, 3.2);
+  -ms-transition-duration: 500ms;
+  -ms-transition-timing-function: ease-out;
+}
+canvas#starscreen {
+  margin: 0px;
+  padding: 0px;
+  background: #87e0fd;
+  background: -moz-linear-gradient(top, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #87e0fd), color-stop(40%, #53cbf1), color-stop(100%, #05abe0));
+  background: -webkit-linear-gradient(top, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
+  background: -o-linear-gradient(top, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
+  background: -ms-linear-gradient(top, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
+  background: linear-gradient(to bottom, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
+}
+#info {
+  background: #001;
+  color: #fb3;
+  z-index: 100;
+  width: 300px;
+  padding: 10px;
+  margin: 0px;
+  float: right;
+  border: #445 1px solid;
+  overflow: auto;
+}
+#info li {
+  margin-left: -2em;
+}
+#info a {
+  color: #fe0;
+}
+#detailpage,
+#systeme {
+  margin: 10pt;
+}

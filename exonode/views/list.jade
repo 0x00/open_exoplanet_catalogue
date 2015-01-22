@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  #systeme 
+    h1 Exobrowser: Whole system list
+    ul
+      each s in systems
+        li
+          +link(s) 
