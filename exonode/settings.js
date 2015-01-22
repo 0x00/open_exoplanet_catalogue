@@ -12,7 +12,7 @@ var read = function(file){
 };
 
 
-global.bounds = { minX: 0, maxX: 0, minY: 0, maxY: 0};
+global.bounds = { minX: 0, maxX: 0, minY: 0, maxY: 0, pages: 0, sysperpage: 0};
 
 
 var parse = function(xml){
@@ -49,6 +49,8 @@ var parse = function(xml){
 
 
 			systems.push(res);
+			global.bounds.sysperpage = 500;
+      global.bounds.pages = Math.ceil(systems.length/global.bounds.sysperpage);
 			global.systemMap[encodeURI(res.system.name[0])] = res;
 			}
 	});
@@ -68,7 +70,6 @@ fs.readdir(path, function(e,i){
 
 buildDB(path1);
 buildDB(path2);
-
 
 function num(a){
   if(!isNaN(a)) return a;

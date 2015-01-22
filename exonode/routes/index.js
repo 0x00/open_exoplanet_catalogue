@@ -7,5 +7,7 @@ exports.listpage = function(req, res){
 };
 
 exports.listjson = function(req, res){
-  res.send(global.systems);
+  pagesize = bounds.sysperpage;
+	page = req.params.page;
+  res.send(global.systems.slice(page*pagesize,(page+1)*pagesize));
 };

@@ -67,19 +67,30 @@ $(canvas).css("height", window.innerHeight+"px");
 
 cx = canvas.getContext('2d');
 
+function get(page,max){
+  $.get("/systemlist/"+page, function(data){
+    systems = systems.concat(data);
+    if(page<max){
+		  page++;
+			get(page,max);
+
+			paintSystems(systems,cx);
+
+      cx.font = "60px Arial";
+      cx.fillStyle = "#000";
+	    cx.fillText("Wait while loading..", 100+3,100+3);
+      cx.fillStyle = "#9f9";
+	    cx.fillText("Wait while loading..", 100,100);
+		}else{
+			paintSystems(systems,cx);
+		}
+		
+	});
+
+}
 
 if(systems.length==0){
-	cx.font = "60px Arial";
-  cx.fillStyle = "#000";
-	cx.fillText("Wait while loading..", 100+3,100+3);
-  cx.fillStyle = "#9f9";
-	cx.fillText("Wait while loading..", 100,100);
-
-
-	$.get("/systemlist", function(data){
-		systems = data;
-		paintSystems(systems,cx);
-	});
+  get(0,bounds.pages);
 }else
  paintSystems(systems, cx);
 };
