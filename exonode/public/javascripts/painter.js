@@ -28,7 +28,7 @@ function paint(system, cx){
 
 	//console.log(cur.system.name[0]+" "+px+" "+py);
   cx.beginPath();
-	cx.arc(px,py,1+2*mass(system),0,2*Math.PI);
+	cx.arc(px,py,1+mass(system),0,2*Math.PI);
 	cx.fill();
 
 	//cx.fillText(cur.system.name[0],x(cur)*canvas.width+10, y(cur)*canvas.height+4);
@@ -120,8 +120,8 @@ function byClick(a,b){
 
 
 $(canvas).on('click', function(e){
-  var clx = e.pageX - this.offsetLeft;
-  var cly = e.pageY - this.offsetTop;
+  var clx = e.pageX;
+  var cly = e.pageY;
 	point.x = clx;
 	point.y = cly;
   systems.sort(byClick);
@@ -153,14 +153,23 @@ $("#starscreen").bind('oanimationend animationend webkitAnimationEnd transitione
 });
 
 
-$(canvas).on('dblclick', function(e){
+
+function align(e){
+
+  var clx = e.clientX;
+  var cly = e.clientY;
+
+
+  if(typeof e.originalEvent.touches != 'undefined'){
+	  var t = e.originalEvent.touches;
+	  clx = t[0].pageX;
+	  cly = t[0].pageY;
+	}
+
 
   $(".zoom1").addClass("zoom2");
 
-  var clx = e.pageX - this.offsetLeft;
-  var cly = e.pageY - this.offsetTop;
-
-  cx.strokeStyle = "#f99";
+   cx.strokeStyle = "#f99";
 
 	size = 190;
 	left = { x: clx-size, y: cly-size};
@@ -187,4 +196,21 @@ $(canvas).on('dblclick', function(e){
 
   //draw();
 
+}
+
+
+var tapped=false
+$(canvas).on("touchstart",function(e){
+    if(!tapped){ 
+      tapped=setTimeout(function(){
+          tapped=null
+      },300);   
+    } else {    
+      clearTimeout(tapped);
+      tapped=null;
+
+			align(e);
+    }
 });
+
+$(canvas).on('dblclick', align);
