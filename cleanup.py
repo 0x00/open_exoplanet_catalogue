@@ -85,7 +85,7 @@ validtags = [
     "longitude", "imagedescription", "image", "age", "declination", "rightascension",
     "metallicity", "inclination", "spectraltype", "binary", "planet", "periastron", "star",
     "mass", "eccentricity", "radius", "temperature", "videolink", "transittime", 
-    "spinorbitalignment", "istransiting", "separation", "positionangle"]
+    "spinorbitalignment", "istransiting", "separation", "positionangle", "periastrontime"]
 validattributes = [
     "error",
     "errorplus",
@@ -108,7 +108,7 @@ tagsallowmultiple = ["list", "name", "planet", "star", "binary", "separation"]
 numerictags = ["mass", "radius", "ascnedingnode", "discoveryyear", "semimajoraxis", "period",
     "magV", "magJ", "magH", "magR", "magB", "magK", "magI", "magU", "distance", "longitude", "age",
     "metallicity", "inclination", "periastron", "eccentricity", "temperature", "transittime",
-    "spinorbitalignment", "separation", "positionangle"]
+    "spinorbitalignment", "separation", "positionangle", "periastrontime"]
 numericattributes = ["error", "errorplus", "errorminus", "upperlimit", "lowerlimit"]
 nonzeroattributes = ["error", "errorplus", "errorminus"]
 
@@ -329,6 +329,16 @@ for filename in glob.glob("systems*/*.xml"):
                 print "Error: Invalid list \"" + l.text + "\" in file \"" + filename + "\"."
                 issues += 1
 
+    # Check if each planet is in at least one list
+    oneListOf = ["Confirmed planets", "Controversial", "Kepler Objects of Interest","Solar System", "Retracted planet candidate"]
+    for p in planets:
+        isInList = 0
+        for l in p.findall("./list"):
+            if l.text in oneListOf:
+                isInList += 1
+        if isInList!=1:
+            print "Error: Planet needs to be in exactly one of the following lists: '" +"', '".join(oneListOf)+"'. Check planets in file \"" + filename + "\"."
+            issues += 1
 
 
     # Check transiting planets
