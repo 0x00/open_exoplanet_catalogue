@@ -3,6 +3,7 @@ path2 = "../systems_kepler/";
 
 global.systemMap = {};
 global.systems = []
+global.systems_coords = []
 
 var read = function(file){
   fs = require('fs');
@@ -49,7 +50,9 @@ var parse = function(xml){
 
 
 			systems.push(res);
-			global.bounds.sysperpage = 500;
+			dat = { system: { declination: res.system.declination, rightascension: res.system.rightascension, name: res.system.name }};
+			systems_coords.push(dat);
+			global.bounds.sysperpage = 1000;
       global.bounds.pages = Math.ceil(systems.length/global.bounds.sysperpage);
 			global.systemMap[encodeURI(res.system.name[0])] = res;
 			}
