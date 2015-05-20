@@ -2,8 +2,8 @@
 	<name>Kepler-93</name>
 	<name>KOI-69</name>
 	<name>KIC 3544595</name>
-	<rightascension>19 25 40.39</rightascension>
-	<declination>+38 40 20.45</declination>
+	<rightascension>19 25 40.3888</rightascension>
+	<declination>+38 40 20.450</declination>
 	<distance>96.7</distance>
 	<star>
 		<name>Kepler-93</name>
@@ -11,6 +11,10 @@
 		<name>KIC 3544595</name>
 		<magK>8.370</magK>
 		<temperature errorminus="75" errorplus="75">5669</temperature>
+		<magV errorminus="0.03" errorplus="0.03">10.00</magV>
+		<magB errorminus="0.04" errorplus="0.04">10.73</magB>
+		<magJ errorminus="0.019" errorplus="0.019">8.771</magJ>
+		<magH errorminus="0.017" errorplus="0.017">8.446</magH>
 		<metallicity errorminus="0.10" errorplus="0.10">-0.18</metallicity>
 		<mass errorminus="0.033" errorplus="0.033">0.911</mass>
 		<radius errorminus="0.011" errorplus="0.011">0.919</radius>
@@ -18,6 +22,7 @@
 		<planet>
 			<name>Kepler-93 b</name>
 			<name>KOI-69.01</name>
+			<name>KOI-69 b</name>
 			<name>KIC 3544595 b</name>
 			<period errorminus="0.00000097" errorplus="0.00000097">4.72673978</period>
 			<radius errorminus="0.0017" errorplus="0.0017">0.1319</radius>
@@ -35,6 +40,7 @@
 		<planet>
 			<name>Kepler-93 c</name>
 			<name>KOI-69.10</name>
+			<name>KOI-69 c</name>
 			<name>KIC 3544595 c</name>
 			<period lowerlimit="3700" />
 			<mass lowerlimit="8.5" upperlimit="670" />

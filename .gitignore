@@ -2,3 +2,4 @@
 *.swp
 pullpush.sh
 node_modules/
+list.txt

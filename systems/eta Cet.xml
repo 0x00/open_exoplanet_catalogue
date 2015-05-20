@@ -1,7 +1,7 @@
 <system>
 	<name>eta Cet</name>
-	<rightascension>01 08 35</rightascension>
-	<declination>-10 49 04</declination>
+	<rightascension>01 08 35.39148</rightascension>
+	<declination>-10 10 56.1570</declination>
 	<distance errorminus="0.2" errorplus="0.2">37.99</distance>
 	<star>
 		<name>eta Cet</name>
@@ -10,6 +10,13 @@
 		<name>HIP 5364</name>
 		<name>HD 6805</name>
 		<name>HR 334</name>
+		<magV>3.45</magV>
+		<magB>4.61</magB>
+		<magR>2.61</magR>
+		<magI>2.03</magI>
+		<magJ errorminus="0.01" errorplus="0.01">1.565</magJ>
+		<magH errorminus="0.01" errorplus="0.01">1.012</magH>
+		<magK errorminus="0.01" errorplus="0.01">0.875</magK>
 		<radius errorminus="0.2" errorplus="0.2">14.3</radius>
 		<mass errorminus="0.1" errorplus="0.1">1.7</mass>
 		<spectraltype>K1III</spectraltype>
